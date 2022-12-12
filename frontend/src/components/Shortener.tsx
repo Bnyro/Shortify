@@ -5,6 +5,7 @@ import "./Shortener.css"
 export default function Shortener() {
     const [url, setUrl] = createSignal("");
     const [short, setShort] = createSignal("");
+    const [cpImg, setCpImg] = createSignal("/clip.svg");
 
     const isValidUrl = (urlString: string) => {
         try { 
@@ -34,6 +35,14 @@ export default function Shortener() {
         else setShort(json.short)
     }
 
+    const onCopy = () => {
+        copy(short());
+        setCpImg("/done.svg");
+        setTimeout(() => {
+            setCpImg("/clip.svg");
+        }, 2000);
+    }
+
     return (
         <section>
             <div>
@@ -43,8 +52,8 @@ export default function Shortener() {
             <div id="result">
                 <a id="short" href={short()}>{short()}</a>
                 <Show when={short()}>
-                    <button id="copy" onClick={() => copy(short())}>
-                        <img src="/clip.svg" alt="Copy" />
+                    <button id="copy" onClick={onCopy}>
+                        <img src={cpImg()} alt="Copy" />
                     </button>
                 </Show>
             </div>
