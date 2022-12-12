@@ -1,4 +1,5 @@
 import { createSignal, Show } from "solid-js";
+import copy from "~/util/clipboard";
 import "./Shortener.css"
 
 export default function Shortener() {
@@ -42,7 +43,7 @@ export default function Shortener() {
             <div id="result">
                 <a id="short" href={short()}>{short()}</a>
                 <Show when={short()}>
-                    <button id="copy">
+                    <button id="copy" onClick={() => copy(short())}>
                         <img src="/clip.svg" alt="Copy" />
                     </button>
                 </Show>
