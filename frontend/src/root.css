@@ -1,3 +1,15 @@
+:root {
+  --primary: #335d92;
+  --background: #e1e1e1;
+  --hover: rgba(68, 107, 158, 0.2);
+  --highlight: rgba(68, 107, 158, 0.1);
+}
+
+* {
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
 body {
   font-family: Gordita, Roboto, Oxygen, Ubuntu, Cantarell,
     'Open Sans', 'Helvetica Neue', sans-serif;
@@ -6,7 +18,7 @@ body {
   min-height: 90vh;
   justify-content: center;
   align-items: center;
-  background-color: #e1e1e1;
+  background-color: var(--background);
 }
 
 main {
@@ -16,7 +28,7 @@ main {
 }
 
 h1 {
-  color: #335d92;
+  color: var(--primary);
   font-size: 4rem;
   font-weight: 100;
   line-height: 1.1;
@@ -26,13 +38,12 @@ h1 {
 input, button {
   font-family: inherit;
   font-size: inherit;
-  color: #335d92;
-  background-color: rgba(68, 107, 158, 0.1);
+  color: var(--primary);
+  background-color: var(--highlight);
   border-radius: 2em;
-  border: 2px solid rgba(68, 107, 158, 0);
+  border: 2px solid transparent;
   outline: none;
   font-variant-numeric: tabular-nums;
-  transition: all 0.2s ease-in-out;
 }
 
 input {
@@ -41,11 +52,11 @@ input {
 }
 
 input:focus {
-  border: 2px solid #335d92;
+  border: 2px solid var(--primary);
 }
 
 input:active {
-  background-color: rgba(68, 107, 158, 0.2);
+  background-color: var(--hover);
 }
 
 button {
@@ -55,8 +66,8 @@ button {
 }
 
 button:hover {
-  background-color: rgba(68, 107, 158, 0.2);
-  border: 2px solid #335d92;
+  background-color: var(--hover);
+  border: 2px solid var(--primary);
 }
 
 section {
@@ -68,13 +79,9 @@ section {
 
 a {
   text-decoration: none;
-  color: #335d92;
+  color: var(--primary);
 }
 
 a:hover {
-  box-shadow: 0 0.15rem #335d92;
-}
-
-#short {
-  margin-top: 2rem;
+  box-shadow: 0 0.15rem var(--primary);
 }

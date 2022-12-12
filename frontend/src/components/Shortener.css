@@ -1,0 +1,16 @@
+#result {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#copy {
+    padding: 1rem;
+}
+
+#copy img {
+    width: 1.3rem;
+    height: auto;
+}
+

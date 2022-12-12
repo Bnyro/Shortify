@@ -1,4 +1,5 @@
-import { createSignal } from "solid-js";
+import { createSignal, Show } from "solid-js";
+import "./Shortener.css"
 
 export default function Shortener() {
     const [url, setUrl] = createSignal("");
@@ -38,7 +39,14 @@ export default function Shortener() {
                 <input placeholder="URL" type="text" value={url()} onInput={(e) => setUrl(e.currentTarget.value)} />
                 <button onClick={onClick}>Go</button>
             </div>
-            <a id="short" href={short()}>{short()}</a>
+            <div id="result">
+                <a id="short" href={short()}>{short()}</a>
+                <Show when={short()}>
+                    <button id="copy">
+                        <img src="/clip.svg" alt="Copy" />
+                    </button>
+                </Show>
+            </div>
         </section>
       );
 }

@@ -25,14 +25,22 @@ func CreateShortcut(w http.ResponseWriter, r *http.Request) {
 		CreateErrorResponse(w, errors.New("Bad Request"))
 		return
 	}
-
-	shortcut.Short, err = Shorten(shortcut.Short)
+	
+	shortcut.Short, err = Shorten(shortcut.Full)
 	if err != nil {
 		CreateErrorResponse(w, err)
 		return
 	}
+	
+	var exists bool
+	database.Db.Model(&entities.Shortcut{}).
+        Select("count(*) > 0").
+        Where("full = ?", shortcut.Full).
+        Find(&exists)
 
-	database.Db.Create(shortcut)
+	if !exists {
+		database.Db.Create(shortcut)
+	}
 
 	shortcut.Short = "http://" + r.Host + "/" + shortcut.Short
 	CreateJsonResponse(w, shortcut)
