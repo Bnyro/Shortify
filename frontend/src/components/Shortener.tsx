@@ -1,11 +1,13 @@
+"use client";
 import { createSignal, Show } from "solid-js";
 import copy from "~/util/clipboard";
-import "./Shortener.css"
+import "./Shortener.css";
 
 export default function Shortener() {
     const [url, setUrl] = createSignal("");
     const [short, setShort] = createSignal("");
     const [cpImg, setCpImg] = createSignal("/clip.svg");
+    const BASE_URL = import.meta.env.VITE_API_URL;
 
     const isValidUrl = (urlString: string) => {
         try { 
@@ -22,7 +24,7 @@ export default function Shortener() {
             return;
         }
 
-        const response = await fetch("http://localhost:8002/create", {
+        const response = await fetch(`${BASE_URL}/create`, {
             method: "POST",
             body: JSON.stringify(
                 {

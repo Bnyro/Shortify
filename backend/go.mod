@@ -6,6 +6,8 @@ require gorm.io/driver/postgres v1.4.5
 
 require github.com/go-chi/chi/v5 v5.0.8
 
+require github.com/go-chi/cors v1.2.1 // indirect
+
 require (
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.13.0 // indirect

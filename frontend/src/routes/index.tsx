@@ -1,11 +1,11 @@
-import { Title } from "solid-start";
+import { Title } from "@solidjs/meta";
 import Shortener from "~/components/Shortener";
 
 export default function Home() {
   return (
     <main>
-      <Title>Shortener</Title>
-      <h1>Shortener</h1>
+      <Title>Shortify</Title>
+      <h1>Shortify</h1>
       <Shortener />
     </main>
   );

@@ -6,10 +6,10 @@ Everything you need to build a Solid project, powered by [`solid-start`](https:/
 
 ```bash
 # create a new project in the current directory
-npm init solid
+npm init solid@latest
 
 # create a new project in my-app
-npm init solid my-app
+npm init solid@latest my-app
 ```
 
 ## Developing
@@ -28,3 +28,5 @@ npm run dev -- --open
 Solid apps are built with _adapters_, which optimise your project for deployment to different environments.
 
 By default, `npm run build` will generate a Node app that you can run with `npm start`. To use a different adapter, add it to the `devDependencies` in `package.json` and specify in your `vite.config.js`.
+
+## This project was created with the [Solid CLI](https://solid-cli.netlify.app)

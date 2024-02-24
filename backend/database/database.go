@@ -8,7 +8,7 @@ import (
 
 var Db *gorm.DB
 
-const DB_URI = "postgres://postgres@localhost/url"
+const DB_URI = "postgres://postgres@database:5432/shortify"
 
 func Init() {
 	var err error
