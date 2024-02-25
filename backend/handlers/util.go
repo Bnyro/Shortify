@@ -51,3 +51,27 @@ func Shorten(url string) (short string, err error) {
 
 	return encoded.String(), nil
 }
+
+func RealHost(r *http.Request) string {
+	forwardedFor := r.Header.Get("X-Forwarded-Host")
+
+	if !IsBlank(forwardedFor) {
+		return forwardedFor
+	}
+
+	return r.Host
+}
+
+func GetScheme(r *http.Request) string {
+	scheme := r.Header.Get("X-Forwarded-Proto")
+
+	if IsBlank(scheme) {
+		scheme = r.URL.Scheme
+	}
+
+	return scheme
+}
+
+func IsBlank(str string) bool {
+	return len(strings.TrimSpace(str)) == 0
+}

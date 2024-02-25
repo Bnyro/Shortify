@@ -3,7 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"errors"
-	"io/ioutil"
+	"io"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -14,7 +14,7 @@ import (
 func CreateShortcut(w http.ResponseWriter, r *http.Request) {
 	shortcut := new(entities.Shortcut)
 
-	reqBody, err := ioutil.ReadAll(r.Body)
+	reqBody, err := io.ReadAll(r.Body)
 	if err != nil {
 		CreateErrorResponse(w, err)
 		return
@@ -25,24 +25,23 @@ func CreateShortcut(w http.ResponseWriter, r *http.Request) {
 		CreateErrorResponse(w, errors.New("Bad Request"))
 		return
 	}
-	
+
 	shortcut.Short, err = Shorten(shortcut.Full)
 	if err != nil {
 		CreateErrorResponse(w, err)
 		return
 	}
-	
-	var exists bool
-	database.Db.Model(&entities.Shortcut{}).
-        Select("count(*) > 0").
-        Where("full = ?", shortcut.Full).
-        Find(&exists)
 
-	if !exists {
+	alreadyExists := database.Db.Model(&entities.Shortcut{}).
+		Where("full = ?", shortcut.Full).
+		Find(&shortcut).
+		Error == nil
+
+	if !alreadyExists {
 		database.Db.Create(shortcut)
 	}
 
-	shortcut.Short = "http://" + r.Host + "/" + shortcut.Short
+	shortcut.Short = GetScheme(r) + "://" + RealHost(r) + "/" + shortcut.Short
 	CreateJsonResponse(w, shortcut)
 }
 
