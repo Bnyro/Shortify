@@ -15,8 +15,10 @@ RUN npm install
 # Copy the rest of the app files to the container
 COPY . .
 
+RUN npm run build
+
 # Expose a port (if needed)
 EXPOSE 3000
 
 # Start the app
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "start" ]
