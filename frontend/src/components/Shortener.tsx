@@ -47,7 +47,7 @@ export default function Shortener() {
 
     return (
         <section>
-            <div>
+            <div id="input-container">
                 <input placeholder="URL" type="text" value={url()} onInput={(e) => setUrl(e.currentTarget.value)} />
                 <button onClick={onClick}>Go</button>
             </div>

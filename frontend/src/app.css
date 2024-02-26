@@ -50,6 +50,7 @@ button {
 input {
   padding: 1em 2em;
   width: 300px;
+  max-width: 90vw;
 }
 
 input:focus {
@@ -63,7 +64,6 @@ input:active {
 button {
   padding: 1em 2em;
   cursor: pointer;
-  margin: 0 0.5rem;
 }
 
 button:hover {

@@ -1,16 +1,23 @@
 #result {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #copy {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 #copy img {
-    width: 1.3rem;
-    height: auto;
+  width: 1.3rem;
+  height: auto;
 }
 
+#input-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
